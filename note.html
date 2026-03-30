@@ -36,7 +36,7 @@
         .con-img[data-v-20b9244c] {
             width: 1rem;
             margin: auto;
-            padding: .2rem;
+            padding: .13rem; /* 头像区域稍微留一点空间，不要太贴边 */
             max-height: 1.5rem
         }
 
@@ -44,18 +44,20 @@
             width: 100%
         }
 
+        /* 核心调整：字体调大，行间距适中 */
         .box[data-v-20b9244c] {
             display: -ms-flexbox;
             display: flex;
             -ms-flex-align: top;
             align-items: top;
-            font-size: .16rem;
+            font-size: .13rem; /* 调回到标准大小，清晰可见 */
             color: #333;
-            padding: .05rem .4rem
+            padding: .04rem .3rem; /* 上下行间距适中，不会太挤也不会太松 */
+            line-height: 1.3; /* 保证多行文字（学院名）排版整齐 */
         }
 
         .box-l[data-v-20b9244c] {
-            width: .8rem;
+            width: .8rem; /* 标签宽度保持不变，对齐好看 */
             text-align: justify;
             text-align-last: justify
         }
@@ -65,9 +67,6 @@
             flex: 1;
             border-bottom: 1px solid #333
         }
-
-        /*# sourceURL=E:/FrontPageModelResource/河北大学/学工/mobile/src/pages/student/leaveNote/leaveNote.vue */
-        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkU6L0Zyb250UGFnZU1vZGVsUmVzb3VyY2Uv5rKz5YyX5aSn5a2mL+WtpuW3pS9tb2JpbGUvc3JjL3BhZ2VzL3N0dWRlbnQvbGVhdmVOb3RlL2xlYXZlTm90ZS52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsdUJBQXVCLFdBQVksWUFBYSwrQ0FBMkQsMEJBQTJCLGVBQWlCLENBQ3RKLEFBQ0QsMkJBQTJCLFVBQVksQ0FDdEMsQUFDRCxzQkFBc0Isa0JBQW1CLFNBQVUsTUFBUSxDQUMxRCxBQUNELDBCQUEwQixVQUFZLENBQ3JDLEFBQ0QsMEJBQTBCLFdBQVksWUFBYSxjQUFlLGlCQUFtQixDQUNwRixBQUNELDhCQUE4QixVQUFZLENBQ3pDLEFBQ0Qsc0JBQXNCLG9CQUFxQixhQUFjLG1CQUFvQixnQkFBaUIsaUJBQWtCLFdBQWUsb0JBQXNCLENBQ3BKLEFBQ0Qsd0JBQXdCLFlBQWEsbUJBQW9CLHVCQUF5QixDQUNqRixBQUNELHdCQUF3QixXQUFZLE9BQVEsNEJBQWlDLENBQzVFIiwiZmlsZSI6ImxlYXZlTm90ZS52dWUiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5tYWluW2RhdGEtdi0yMGI5MjQ0Y117d2lkdGg6IDEwMCU7aGVpZ2h0OiAxMDAlO2JhY2tncm91bmQtaW1hZ2U6IHVybChcIi4uLy4uLy4uLy4uL3N0YXRpYy9pbWcvbm90ZUJHLmpwZ1wiKTtiYWNrZ3JvdW5kLXNpemU6IDEwMCUgMTAwJTtvdmVyZmxvdzogaGlkZGVuO1xufVxuLmhlYWQgaW1nW2RhdGEtdi0yMGI5MjQ0Y117d2lkdGg6IDEwMCU7XG59XG4uYm90W2RhdGEtdi0yMGI5MjQ0Y117cG9zaXRpb246IGFic29sdXRlO2JvdHRvbTogMDtsZWZ0OiAwO1xufVxuLmJvdCBpbWdbZGF0YS12LTIwYjkyNDRjXXt3aWR0aDogMTAwJTtcbn1cbi5jb24taW1nW2RhdGEtdi0yMGI5MjQ0Y117d2lkdGg6IDFyZW07bWFyZ2luOiBhdXRvO3BhZGRpbmc6IC4ycmVtO21heC1oZWlnaHQ6IDEuNXJlbTtcbn1cbi5jb24taW1nIGltZ1tkYXRhLXYtMjBiOTI0NGNde3dpZHRoOiAxMDAlO1xufVxuLmJveFtkYXRhLXYtMjBiOTI0NGNde2Rpc3BsYXk6IC1tcy1mbGV4Ym94O2Rpc3BsYXk6IGZsZXg7LW1zLWZsZXgtYWxpZ246IHRvcDthbGlnbi1pdGVtczogdG9wO2ZvbnQtc2l6ZTogLjE2cmVtO2NvbG9yOiAjMzMzMzMzO3BhZGRpbmc6IC4wNXJlbSAuNHJlbTtcbn1cbi5ib3gtbFtkYXRhLXYtMjBiOTI0NGNde3dpZHRoOiAuOHJlbTt0ZXh0LWFsaWduOiBqdXN0aWZ5O3RleHQtYWxpZ24tbGFzdDoganVzdGlmeTtcbn1cbi5ib3gtcltkYXRhLXYtMjBiOTI0NGNdey1tcy1mbGV4OiAxO2ZsZXg6IDE7Ym9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICMzMzMzMzM7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9 */
     </style>
     <style type="text/css">
         .index-background[data-v-003fe549] {
