@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请假申请</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .datetime-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .datetime-group .form-group {
+            flex: 1;
+        }
+
+        input[type="datetime-local"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input[type="datetime-local"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .tip {
+            margin-top: 15px;
+            padding: 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📝 请假生成器</h1>
+    <form id="leaveForm">
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name" required placeholder="请输入姓名">
+        </div>
+
+        <div class="form-group">
+            <label for="studentId">学号</label>
+            <input type="text" id="studentId" name="studentId" required placeholder="请输入学号">
+        </div>
+
+        <div class="form-group">
+            <label for="college">学院</label>
+            <select id="college" name="college" required style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; background-color: white;">
+                <option value="">请选择学院</option>
+                <option value="网络空间安全与计算机学院/计算机教学部">网络空间安全与计算机学院/计算机教学部</option>
+                <option value="国际学院">国际学院</option>
+                <option value="别的还没加">别的还没加</option>
+            </select>
+        </div>
+
+        <div class="datetime-group">
+            <div class="form-group">
+                <label for="startTime">开始时间</label>
+                <input type="datetime-local" id="startTime" name="startTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="endTime">结束时间</label>
+                <input type="datetime-local" id="endTime" name="endTime" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="issueDate">签发时间</label>
+            <input type="date" id="issueDate" name="issueDate" required>
+        </div>
+
+        <button type="submit" class="btn-submit">确定</button>
+
+        <div class="tip">
+            💡 提示：填写完成后点击"确定"按钮，将自动生成请假条并跳转查看。
+        </div>
+    </form>
+</div>
+
+<script>
+    // 设置默认日期为今天
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    document.getElementById('issueDate').value = `${year}-${month}-${day}`;
+
+    // 设置默认时间为当前时间的整点
+    const hours = String(today.getHours()).padStart(2, '0');
+    const minutes = '00';
+    const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+    document.getElementById('startTime').value = currentDateTime;
+    document.getElementById('endTime').min = currentDateTime;
+
+    // 监听开始时间变化，更新结束时间的最小值
+    document.getElementById('startTime').addEventListener('change', function() {
+        document.getElementById('endTime').min = this.value;
+    });
+
+    // 表单提交处理
+    document.getElementById('leaveForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 获取表单数据
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            studentId: document.getElementById('studentId').value.trim(),
+            college: document.getElementById('college').value.trim(),
+            startTime: document.getElementById('startTime').value,
+            endTime: document.getElementById('endTime').value,
+            issueDate: document.getElementById('issueDate').value
+        };
+
+        // 验证数据
+        if (!formData.name || !formData.studentId || !formData.college) {
+            alert('请填写完整信息！');
+            return;
+        }
+
+        // 格式化日期时间 - 确保没有任何空格
+        const startDateTime = new Date(formData.startTime);
+        const endDateTime = new Date(formData.endTime);
+        const issueDateTime = new Date(formData.issueDate);
+
+        // 格式化为要求的格式 (无空格)
+        const formatDateTime = (date) => {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            const h = String(date.getHours()).padStart(2, '0');
+            return `${y}年${m}月${d}日${h}时`;
+        };
+
+        const formatDate = (date) => {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}年${m}月${d}日`;
+        };
+
+        // 组装数据
+        const leaveData = {
+            name: formData.name,
+            studentId: formData.studentId,
+            college: formData.college,
+            leavePeriod: `${formatDateTime(startDateTime)}-${formatDateTime(endDateTime)}`,
+            issueDate: formatDate(issueDateTime)
+        };
+
+        // 输出调试信息
+        console.log('请假期限:', leaveData.leavePeriod);
+        console.log('签发时间:', leaveData.issueDate);
+
+        // 存储到 localStorage
+        localStorage.setItem('leaveNoteData', JSON.stringify(leaveData));
+
+        // 跳转到请假条页面
+        window.location.href = 'note.html';
+    });
+</script>
+</body>
+</html>
